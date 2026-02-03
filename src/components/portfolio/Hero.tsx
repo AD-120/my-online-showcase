@@ -1,10 +1,26 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion } from "framer-motion";
 
 const INTRO_WORDS = [
-  'Hi,', "I'm", 'Avi', ',', 'a', 'UX/UI', 'designer,', 'lecturer,', 'and', 
-  'digital', 'artist', 'focused', 'on', 'clear,', 'creative,', 'and', 
-  'user-centered', 'digital', 'experiences.'
+  "Hi,",
+  "I'm",
+  "Avi",
+  ",",
+  "a",
+  "UX/UI",
+  "designer,",
+  "lecturer,",
+  "and",
+  "digital",
+  "artist",
+  "focused",
+  "on",
+  "clear,",
+  "creative,",
+  "and",
+  "user-centered",
+  "digital",
+  "experiences.",
 ];
 
 const Hero = () => {
@@ -17,7 +33,7 @@ const Hero = () => {
     if (intervalRef.current === null) {
       indexRef.current = 0;
       setHighlightedIndex(-1);
-      
+
       intervalRef.current = setInterval(() => {
         if (indexRef.current >= INTRO_WORDS.length) {
           // Animation complete - clear interval and remove last highlight
@@ -28,7 +44,7 @@ const Hero = () => {
           setHighlightedIndex(-1);
           return;
         }
-        
+
         setHighlightedIndex(indexRef.current);
         indexRef.current++;
       }, 400);
@@ -38,7 +54,7 @@ const Hero = () => {
   useEffect(() => {
     // Initial run on component mount with small delay
     const timeoutId = setTimeout(startHighlightCycle, 50);
-    
+
     return () => {
       clearTimeout(timeoutId);
       if (intervalRef.current) {
@@ -58,7 +74,7 @@ const Hero = () => {
   };
 
   return (
-    <motion.section 
+    <motion.section
       className="relative min-h-[60vh] flex flex-col items-center justify-center p-8 md:p-16 overflow-hidden cursor-pointer"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -67,29 +83,27 @@ const Hero = () => {
       onClick={handleClick}
     >
       <div className="relative z-10 max-w-4xl text-center">
-        <motion.h1 
+        <motion.h1
           className="text-[4.5vw] md:text-4xl lg:text-5xl font-serif font-bold leading-[1.4]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           {INTRO_WORDS.map((word, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className={`inline-block transition-all duration-200 whitespace-pre ${
-                highlightedIndex === index 
-                  ? 'bg-neo-pink text-neo-yellow px-1 rounded-md' 
-                  : ''
+                highlightedIndex === index ? "bg-neo-pink text-neo-yellow px-1 rounded-md" : ""
               }`}
             >
-              {word}{' '}
+              {word}{" "}
             </span>
           ))}
         </motion.h1>
       </div>
 
       {/* Decorative border line */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-0 left-0 right-0 h-px bg-primary"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
