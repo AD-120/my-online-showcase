@@ -57,6 +57,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        neo: {
+          pink: "hsl(var(--neo-pink))",
+          yellow: "hsl(var(--neo-yellow))",
+          blue: "hsl(var(--neo-blue))",
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
