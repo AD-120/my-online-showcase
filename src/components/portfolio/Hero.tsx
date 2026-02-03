@@ -5,7 +5,7 @@ const INTRO_WORDS = [
   "Hi,",
   "I'm",
   "Avi",
-  ",",
+  "-",
   "a",
   "UX/UI",
   "designer,",
