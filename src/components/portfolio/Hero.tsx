@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const INTRO_WORDS = [
-  'Hi,', "I'm", 'Avi', '-', 'a', 'UX/UI', 'designer,', 'lecturer,', 'and', 
+  'Hi,', "I'm", 'Avi', ',', 'a', 'UX/UI', 'designer,', 'lecturer,', 'and', 
   'digital', 'artist', 'focused', 'on', 'clear,', 'creative,', 'and', 
   'user-centered', 'digital', 'experiences.'
 ];
