@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Category } from '@/types/portfolio';
 import { CATEGORIES } from '@/data/projects';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 interface SidebarProps {
   activeCategory: Category;
@@ -112,9 +112,22 @@ const Sidebar = ({
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
               Get in Touch
             </p>
-            <div className="space-y-2">
-              <a className="block text-sm text-foreground hover:text-accent transition-colors" href="mailto:avi.milgrom@gmail.com">
-                avi.milgrom@gmail.com
+            <div className="flex gap-4">
+              <a 
+                href="mailto:avi.milgrom@gmail.com" 
+                className="text-foreground hover:text-accent transition-colors"
+                aria-label="Email"
+              >
+                <Mail size={24} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/avi-milgrom" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-accent transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={24} />
               </a>
             </div>
           </div>
