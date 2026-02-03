@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Project } from '@/types/portfolio';
 
 interface ProjectCardProps {
   project: Project;
-  onClick: (project: Project) => void;
+  onClick?: (project: Project) => void;
 }
 
 const getShadowClass = (color: Project['highlightColor']) => {
@@ -25,6 +26,16 @@ const getHoverShadowStyle = (color: Project['highlightColor']) => {
 };
 
 const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(project);
+    } else {
+      navigate(`/project/${project.id}`);
+    }
+  };
+
   return (
     <motion.article
       layout
@@ -37,7 +48,7 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
         x: -2,
         ...getHoverShadowStyle(project.highlightColor)
       }}
-      onClick={() => onClick(project)}
+      onClick={handleClick}
       className={`
         group cursor-pointer bg-card border-2 border-primary overflow-hidden
         ${getShadowClass(project.highlightColor)}
