@@ -113,8 +113,8 @@ const Sidebar = ({
               Get in Touch
             </p>
             <div className="space-y-2">
-              <a href="mailto:hello@avimilgrom.com" className="block text-sm text-foreground hover:text-accent transition-colors">
-                hello@avimilgrom.com
+              <a className="block text-sm text-foreground hover:text-accent transition-colors" href="mailto:avi.milgrom@gmail.com">
+                avi.milgrom@gmail.com
               </a>
             </div>
           </div>
