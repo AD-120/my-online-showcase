@@ -135,20 +135,6 @@ const Sidebar = ({ activeCategory, onCategorySelect, onHomeClick }: SidebarProps
               >
                 hello@avimilgrom.com
               </a>
-              <div className="flex gap-4 mt-4">
-                <a 
-                  href="#" 
-                  className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <a 
-                  href="#" 
-                  className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Dribbble
-                </a>
-              </div>
             </div>
           </div>
         </div>
