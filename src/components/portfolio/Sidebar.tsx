@@ -10,6 +10,28 @@ interface SidebarProps {
   onHomeClick: () => void;
 }
 
+const getCategoryColor = (category: Category) => {
+  switch (category) {
+    case 'UX/UI': return 'hover:bg-neo-pink hover:text-foreground';
+    case 'LXD': return 'hover:bg-neo-yellow hover:text-foreground';
+    case 'Graphic Design': return 'hover:bg-neo-blue hover:text-foreground';
+    case 'Digital Art': return 'hover:bg-neo-pink hover:text-foreground';
+    case 'AI': return 'hover:bg-neo-yellow hover:text-foreground';
+    default: return 'hover:bg-secondary hover:text-foreground';
+  }
+};
+
+const getActiveCategoryStyle = (category: Category) => {
+  switch (category) {
+    case 'UX/UI': return 'bg-neo-pink text-foreground border-primary';
+    case 'LXD': return 'bg-neo-yellow text-foreground border-primary';
+    case 'Graphic Design': return 'bg-neo-blue text-foreground border-primary';
+    case 'Digital Art': return 'bg-neo-pink text-foreground border-primary';
+    case 'AI': return 'bg-neo-yellow text-foreground border-primary';
+    default: return 'bg-secondary text-foreground border-primary';
+  }
+};
+
 const Sidebar = ({ activeCategory, onCategorySelect, onHomeClick }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -71,7 +93,7 @@ const Sidebar = ({ activeCategory, onCategorySelect, onHomeClick }: SidebarProps
                     transition-all duration-200 border-l-4
                     ${activeCategory === 'All' 
                       ? 'border-primary bg-secondary text-foreground' 
-                      : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted'
+                      : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted hover:bg-secondary'
                     }
                   `}
                 >
@@ -89,8 +111,8 @@ const Sidebar = ({ activeCategory, onCategorySelect, onHomeClick }: SidebarProps
                       w-full text-left py-3 px-4 text-sm font-bold uppercase tracking-widest
                       transition-all duration-200 border-l-4
                       ${activeCategory === category 
-                        ? 'border-primary bg-secondary text-foreground' 
-                        : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted'
+                        ? getActiveCategoryStyle(category)
+                        : `border-transparent text-muted-foreground ${getCategoryColor(category)}`
                       }
                     `}
                   >
