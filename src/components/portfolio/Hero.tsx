@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const INTRO_WORDS = [
   "Hi,",
   "I'm",
-  "Avi",
+  "Avi ",
   "-",
   "a",
   "UX/UI",
