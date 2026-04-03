@@ -186,7 +186,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     >
       {/* Back button */}
       <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b-2 border-primary">
-        <div className="p-4 md:p-6">
+        <div className="p-4 pl-16 md:pl-6 md:p-6">
           <button
             onClick={onBack}
             className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest text-foreground border-2 border-primary bg-card neo-shadow-black transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary))]"
