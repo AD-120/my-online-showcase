@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Category } from '@/types/portfolio';
 import { CATEGORIES } from '@/data/projects';
 import { Menu, X, Mail, Linkedin } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 interface SidebarProps {
   activeCategory: Category;
   onCategorySelect: (category: Category) => void;
