@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
     client: 'Steps to Hebrew',
     description: 'An interactive platform for French speakers learning Hebrew, transforming education into a dynamic, gamified experience with AI-driven conversations.',
     thumbnail: '/projects/steps_18.png',
-    categories: ['LXD', 'UX/UI', 'AI'],
+    categories: ['LXD', 'UX/UI'],
     highlightColor: 'blue',
     tags: ['EdTech', 'Gamification', 'AI'],
     details: {
