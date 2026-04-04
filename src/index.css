@@ -57,24 +57,24 @@
     --tag-ai: 280 70% 90%;
     --tag-interactive: 348 100% 90%;
     --tag-sculpture: 199 89% 88%;
-    --tag-technical: 0 0% 88%;
-    --tag-visual-learning: 48 97% 85%;
-    --tag-hardware: 0 0% 85%;
+    --tag-technical: 210 60% 85%;
+    --tag-visual-learning: 140 50% 85%;
+    --tag-hardware: 20 80% 85%;
     --tag-museum: 30 100% 88%;
     --tag-branding: 348 100% 90%;
-    --tag-print: 160 60% 85%;
+    --tag-print: 170 55% 82%;
     --tag-art: 280 70% 90%;
-    --tag-80s: 30 100% 88%;
+    --tag-80s: 15 90% 85%;
     --tag-video: 199 89% 88%;
     --tag-experience: 262 80% 88%;
     --tag-export: 48 97% 85%;
     --tag-illustration: 348 100% 90%;
-    --tag-character-design: 30 100% 88%;
-    --tag-avner: 199 89% 88%;
+    --tag-character-design: 25 85% 85%;
+    --tag-avner: 190 70% 85%;
     --tag-generative-art: 280 70% 90%;
-    --tag-concept: 160 60% 85%;
+    --tag-concept: 155 55% 82%;
     --tag-illusion: 262 80% 88%;
-    --tag-visual-art: 48 97% 85%;
+    --tag-visual-art: 45 90% 85%;
     
     /* Semantic tokens */
     --hero-bg: 0 0% 97.6%;
