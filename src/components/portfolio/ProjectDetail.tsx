@@ -170,6 +170,23 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   const detailedData = getProjectDetailedData(project.id);
   const galleryImages = project.details?.galleryImages || [];
   const imageChunks = getImageChunks(galleryImages);
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  const imageChunks = getImageChunks(galleryImages);
 
   // Split image chunks to interleave with content sections
   const heroImages = imageChunks.slice(0, 1);
