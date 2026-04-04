@@ -43,6 +43,38 @@
     --neo-pink: 348 100% 78%;
     --neo-yellow: 48 97% 53%;
     --neo-blue: 199 89% 60%;
+
+    /* Tag colors */
+    --tag-ux: 348 100% 90%;
+    --tag-govtech: 199 89% 88%;
+    --tag-ia: 48 97% 85%;
+    --tag-web: 262 80% 88%;
+    --tag-finance: 160 60% 85%;
+    --tag-edtech: 48 97% 85%;
+    --tag-mobile: 199 89% 88%;
+    --tag-education: 160 60% 85%;
+    --tag-gamification: 30 100% 88%;
+    --tag-ai: 280 70% 90%;
+    --tag-interactive: 348 100% 90%;
+    --tag-sculpture: 199 89% 88%;
+    --tag-technical: 0 0% 88%;
+    --tag-visual-learning: 48 97% 85%;
+    --tag-hardware: 0 0% 85%;
+    --tag-museum: 30 100% 88%;
+    --tag-branding: 348 100% 90%;
+    --tag-print: 160 60% 85%;
+    --tag-art: 280 70% 90%;
+    --tag-80s: 30 100% 88%;
+    --tag-video: 199 89% 88%;
+    --tag-experience: 262 80% 88%;
+    --tag-export: 48 97% 85%;
+    --tag-illustration: 348 100% 90%;
+    --tag-character-design: 30 100% 88%;
+    --tag-avner: 199 89% 88%;
+    --tag-generative-art: 280 70% 90%;
+    --tag-concept: 160 60% 85%;
+    --tag-illusion: 262 80% 88%;
+    --tag-visual-art: 48 97% 85%;
     
     /* Semantic tokens */
     --hero-bg: 0 0% 97.6%;
