@@ -61,6 +61,8 @@ export default {
           pink: "hsl(var(--neo-pink))",
           yellow: "hsl(var(--neo-yellow))",
           blue: "hsl(var(--neo-blue))",
+          green: "hsl(var(--neo-green))",
+          orange: "hsl(var(--neo-orange))",
         },
       },
       fontFamily: {
