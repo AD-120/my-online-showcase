@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Project } from '@/types/portfolio';
+import ProjectTag from '@/components/portfolio/ProjectTag';
 
 interface ProjectCardProps {
   project: Project;
