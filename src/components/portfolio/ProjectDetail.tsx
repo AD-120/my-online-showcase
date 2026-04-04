@@ -49,7 +49,7 @@ const ProjectImage = ({ src, alt, className = '' }: { src: string; alt: string; 
     transition={{ duration: 0.7, ease: 'easeOut' }}
     className={`overflow-hidden ${className}`}
   >
-    <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
+    <img src={src} alt={alt} className="w-full h-auto max-w-[800px] mx-auto object-contain" loading="lazy" />
   </motion.div>
 );
 
