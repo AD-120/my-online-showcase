@@ -17,9 +17,9 @@ const getCategoryColor = (category: Category) => {
     case 'Graphic Design':
       return 'hover:bg-neo-blue hover:text-foreground';
     case 'Digital Art':
-      return 'hover:bg-neo-pink hover:text-foreground';
+      return 'hover:bg-neo-green hover:text-foreground';
     case 'AI':
-      return 'hover:bg-neo-yellow hover:text-foreground';
+      return 'hover:bg-neo-orange hover:text-foreground';
     default:
       return 'hover:bg-secondary hover:text-foreground';
   }
@@ -33,9 +33,9 @@ const getActiveCategoryStyle = (category: Category) => {
     case 'Graphic Design':
       return 'bg-neo-blue text-foreground border-primary';
     case 'Digital Art':
-      return 'bg-neo-pink text-foreground border-primary';
+      return 'bg-neo-green text-foreground border-primary';
     case 'AI':
-      return 'bg-neo-yellow text-foreground border-primary';
+      return 'bg-neo-orange text-foreground border-primary';
     default:
       return 'bg-secondary text-foreground border-primary';
   }
