@@ -108,6 +108,30 @@
   }
 }
 
+@layer base {
+  /* Global image constraints */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      max-width: min(100%, 1200px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    img {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
 @layer utilities {
   /* Neo-Brutalist shadows */
   .neo-shadow-pink {
