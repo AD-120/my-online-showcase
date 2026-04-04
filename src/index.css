@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+
+/* Neo-Brutalist Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 97.6%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 348 100% 78%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 0%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+
+    --radius: 0px;
+
+    /* Neo-Brutalist accent colors */
+    --neo-pink: 348 100% 78%;
+    --neo-yellow: 48 97% 53%;
+    --neo-blue: 199 89% 60%;
+    --neo-green: 160 60% 55%;
+    --neo-orange: 25 95% 60%;
+
+    /* Tag colors */
+    --tag-ux: 348 100% 90%;
+    --tag-govtech: 199 89% 88%;
+    --tag-ia: 48 97% 85%;
+    --tag-web: 262 80% 88%;
+    --tag-finance: 160 60% 85%;
+    --tag-edtech: 48 97% 85%;
+    --tag-mobile: 199 89% 88%;
+    --tag-education: 160 60% 85%;
+    --tag-gamification: 30 100% 88%;
+    --tag-ai: 280 70% 90%;
+    --tag-interactive: 348 100% 90%;
+    --tag-sculpture: 199 89% 88%;
+    --tag-technical: 210 60% 85%;
+    --tag-visual-learning: 140 50% 85%;
+    --tag-hardware: 20 80% 85%;
+    --tag-museum: 30 100% 88%;
+    --tag-branding: 348 100% 90%;
+    --tag-print: 170 55% 82%;
+    --tag-art: 280 70% 90%;
+    --tag-80s: 15 90% 85%;
+    --tag-video: 199 89% 88%;
+    --tag-experience: 262 80% 88%;
+    --tag-export: 48 97% 85%;
+    --tag-illustration: 348 100% 90%;
+    --tag-character-design: 25 85% 85%;
+    --tag-generative-art: 280 70% 90%;
+    --tag-concept: 155 55% 82%;
+    --tag-illusion: 262 80% 88%;
+    --tag-visual-art: 45 90% 85%;
+    
+    /* Semantic tokens */
+    --hero-bg: 0 0% 97.6%;
+    --sidebar-bg: 0 0% 100%;
+    --footer-bg: 0 0% 0%;
+    --footer-text: 0 0% 100%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 348 100% 78%;
+    --accent-foreground: 0 0% 0%;
+    --border: 0 0% 100%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 100%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer base {
+  /* Global image constraints */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      max-width: min(100%, 1200px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    img {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
+@layer utilities {
+  /* Neo-Brutalist shadows */
+  .neo-shadow-pink {
+    box-shadow: 4px 4px 0px 0px hsl(var(--neo-pink));
+  }
+  .neo-shadow-yellow {
+    box-shadow: 4px 4px 0px 0px hsl(var(--neo-yellow));
+  }
+  .neo-shadow-blue {
+    box-shadow: 4px 4px 0px 0px hsl(var(--neo-blue));
+  }
+  .neo-shadow-black {
+    box-shadow: 4px 4px 0px 0px hsl(var(--primary));
+  }
+  
+  /* Hover states */
+  .neo-shadow-pink-hover:hover {
+    box-shadow: 6px 6px 0px 0px hsl(var(--neo-pink));
+    transform: translate(-2px, -2px);
+  }
+  .neo-shadow-yellow-hover:hover {
+    box-shadow: 6px 6px 0px 0px hsl(var(--neo-yellow));
+    transform: translate(-2px, -2px);
+  }
+  .neo-shadow-blue-hover:hover {
+    box-shadow: 6px 6px 0px 0px hsl(var(--neo-blue));
+    transform: translate(-2px, -2px);
+  }
+  .neo-shadow-black-hover:hover {
+    box-shadow: 6px 6px 0px 0px hsl(var(--primary));
+    transform: translate(-2px, -2px);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 0;
+  }
+}

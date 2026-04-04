@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls:*)",
+      "Bash(sort -k6,7 -r)",
+      "Bash(__NEW_LINE_fddf67d7934bfec1__ cp:*)",
+      "Bash(__NEW_LINE_fddf67d7934bfec1__ echo:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(command -v npm)",
+      "Read(//usr/local/lib/node_modules/npm/bin/**)",
+      "Read(//Users/ostap/.volta/**)",
+      "Read(//Users/ostap/**)",
+      "Bash(/opt/homebrew/lib/node_modules/npm/bin/npm install:*)",
+      "Bash(export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\")",
+      "Bash(npm install:*)",
+      "Bash(git init:*)",
+      "Bash(git remote:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
