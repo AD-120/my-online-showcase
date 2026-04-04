@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import Sidebar from '@/components/portfolio/Sidebar';
 import ProjectDetail from '@/components/portfolio/ProjectDetail';
 import Footer from '@/components/portfolio/Footer';
@@ -12,6 +12,10 @@ const ProjectPage = () => {
 
   const project = useMemo(() => {
     return PROJECTS.find(p => p.id === projectId);
+  }, [projectId]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, [projectId]);
 
   const handleBack = () => {

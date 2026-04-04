@@ -15,6 +15,7 @@ export interface Project {
   subtitle?: string;
   description: string;
   thumbnail: string;
+  thumbnailFocus?: string;
   categories: Category[];
   highlightColor: HighlightColor;
   tags: string[];

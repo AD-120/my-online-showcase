@@ -103,8 +103,8 @@ export const PROJECTS: Project[] = [
     subtitle: 'Gamified Language Learning App',
     client: 'Steps to Hebrew',
     description: 'An interactive platform for French speakers learning Hebrew, transforming education into a dynamic, gamified experience with AI-driven conversations.',
-    thumbnail: '/projects/steps_18.png',
-    categories: ['LXD', 'UX/UI'],
+    thumbnail: '/projects/steps_6.png',
+    categories: ['LXD', 'UX/UI', 'Graphic Design'],
     highlightColor: 'blue',
     tags: ['EdTech', 'Gamification', 'AI'],
     details: {
@@ -131,6 +131,7 @@ export const PROJECTS: Project[] = [
     subtitle: 'Interactive Sculpture',
     description: 'An interactive sculpture of a mammoth head that responds to visitors with crude and sarcastic comments, reflecting the bitterness of prehistoric elephants hunted by early humans.',
     thumbnail: '/projects/mamoth_1.jpg',
+    thumbnailFocus: 'center 15%',
     categories: ['Digital Art', 'AI'],
     highlightColor: 'yellow',
     tags: ['AI', 'Interactive', 'Sculpture'],
@@ -150,10 +151,10 @@ export const PROJECTS: Project[] = [
     subtitle: 'Visual & Learning Design',
     client: 'Augury',
     description: 'Step-by-step industrial hardware setup instructions transformed into technician-friendly, visual learning experiences.',
-    thumbnail: '/projects/instructional6.png',
+    thumbnail: '/projects/instructional7.png',
     categories: ['LXD', 'Graphic Design'],
     highlightColor: 'blue',
-    tags: ['Technical', 'Visual Learning', 'Hardware'],
+    tags: ['Visual Learning', 'Graphic Design'],
     details: {
       challenge: 'Challenge details to be added.',
       process: 'Process details to be added.',
@@ -224,7 +225,7 @@ export const PROJECTS: Project[] = [
     subtitle: 'Print & Digital Marketing',
     client: 'Minshar Art Gallery',
     description: 'Branding for a contemporary art gallery, including posters, invitations, and digital identity systems that fit the gallery\'s brand while giving each exhibition its unique character.',
-    thumbnail: '/projects/invites_1.jpg',
+    thumbnail: '/projects/invites_6.png',
     categories: ['Graphic Design'],
     highlightColor: 'yellow',
     tags: ['Branding', 'Print', 'Art'],
@@ -233,6 +234,7 @@ export const PROJECTS: Project[] = [
       process: 'Process details to be added.',
       results: 'Results details to be added.',
       galleryImages: [
+        '/projects/invites_1.jpg',
         '/projects/invites_2.jpg',
         '/projects/invites_3.jpg',
         '/projects/invites_4.jpg',
@@ -275,7 +277,7 @@ export const PROJECTS: Project[] = [
     thumbnail: '/projects/viva1.jpg',
     categories: ['Graphic Design'],
     highlightColor: 'blue',
-    tags: ['Branding', 'Export', 'Print'],
+    tags: ['Branding', 'Print'],
     details: {
       challenge: 'Challenge details to be added.',
       process: 'Process details to be added.',
@@ -290,18 +292,19 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'digital-illustrations',
-    title: 'Digital Illustrations',
-    subtitle: 'Character & Concept Art',
-    description: 'A collection of digital illustrations featuring character designs and concept art.',
-    thumbnail: '/projects/digital drawings_1.jpg',
+    title: 'Illustrations',
+    subtitle: 'Digital Art',
+    description: 'A collection of digital illustrations, character designs, and concept art.',
+    thumbnail: '/projects/digital art1.gif',
     categories: ['Digital Art'],
     highlightColor: 'pink',
-    tags: ['Illustration', 'Character Design'],
+    tags: ['Illustration', 'Visual Art'],
     details: {
       challenge: 'Challenge details to be added.',
       process: 'Process details to be added.',
       results: 'Results details to be added.',
       galleryImages: [
+        '/projects/digital drawings_1.jpg',
         '/projects/digital drawings_2.png',
         '/projects/digital drawings_3.png',
         '/projects/digital drawings_4.png',
@@ -311,7 +314,11 @@ export const PROJECTS: Project[] = [
         '/projects/digital drawings_8.png',
         '/projects/digital drawings_9.png',
         '/projects/digital drawings_10.png',
-        '/projects/digital drawings_11.jpg'
+        '/projects/digital drawings_11.jpg',
+        '/projects/digital art2.jpg',
+        '/projects/digital art3.jpg',
+        '/projects/digital art4.jpg',
+        '/projects/digital art5.gif'
       ]
     }
   },
@@ -323,7 +330,7 @@ export const PROJECTS: Project[] = [
     thumbnail: '/projects/Entirety_1.png',
     categories: ['Digital Art', 'AI'],
     highlightColor: 'blue',
-    tags: ['Generative Art', 'AI', 'Concept'],
+    tags: ['Generative Art', 'AI'],
     details: {
       challenge: 'Challenge details to be added.',
       process: 'Process details to be added.',
@@ -331,25 +338,4 @@ export const PROJECTS: Project[] = [
       galleryImages: []
     }
   },
-  {
-    id: 'dragon-illusion',
-    title: 'The Dragon Illusion',
-    subtitle: 'Digital Art',
-    description: 'A YouTube DIY trick transformed into a self-portrait, blending optical illusion with personal expression.',
-    thumbnail: '/projects/digital art1.gif',
-    categories: ['Digital Art'],
-    highlightColor: 'yellow',
-    tags: ['Illusion', 'Visual Art'],
-    details: {
-      challenge: 'Challenge details to be added.',
-      process: 'Process details to be added.',
-      results: 'Results details to be added.',
-      galleryImages: [
-        '/projects/digital art2.jpg',
-        '/projects/digital art3.jpg',
-        '/projects/digital art4.jpg',
-        '/projects/digital art5.gif'
-      ]
-    }
-  }
 ];

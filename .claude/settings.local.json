@@ -19,7 +19,12 @@
       "Bash(git checkout:*)",
       "Bash(git pull:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(ls ~/.ssh/*.pub)",
+      "Bash(ls /Users/ostap/Desktop/Design/03_Sites/Portfolio/portfolio_4_26/public/projects/steps_*)",
+      "Bash(ls -lh /Users/ostap/Desktop/Design/03_Sites/Portfolio/portfolio_4_26/public/projects/steps_*)"
     ]
   }
 }

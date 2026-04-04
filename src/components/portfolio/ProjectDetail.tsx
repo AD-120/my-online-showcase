@@ -221,7 +221,8 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         <motion.img
           src={project.thumbnail}
           alt={project.title}
-          className="w-full h-[50vh] md:h-[65vh] object-cover"
+          className="w-full h-[25vh] md:h-[32vh] object-cover"
+          style={{ objectPosition: project.thumbnailFocus ?? 'center' }}
           initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}

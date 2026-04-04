@@ -59,9 +59,8 @@
     --tag-ai: 280 70% 90%;
     --tag-interactive: 348 100% 90%;
     --tag-sculpture: 199 89% 88%;
-    --tag-technical: 210 60% 85%;
     --tag-visual-learning: 140 50% 85%;
-    --tag-hardware: 20 80% 85%;
+    --tag-graphic-design: 280 55% 85%;
     --tag-museum: 30 100% 88%;
     --tag-branding: 348 100% 90%;
     --tag-print: 170 55% 82%;
@@ -69,12 +68,8 @@
     --tag-80s: 15 90% 85%;
     --tag-video: 199 89% 88%;
     --tag-experience: 262 80% 88%;
-    --tag-export: 48 97% 85%;
     --tag-illustration: 348 100% 90%;
-    --tag-character-design: 25 85% 85%;
     --tag-generative-art: 280 70% 90%;
-    --tag-concept: 155 55% 82%;
-    --tag-illusion: 262 80% 88%;
     --tag-visual-art: 45 90% 85%;
     
     /* Semantic tokens */
