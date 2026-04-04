@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Project } from '@/types/portfolio';
-import ProjectTag from '@/components/portfolio/ProjectTag';
 
 interface ProjectCardProps {
   project: Project;
@@ -68,7 +67,12 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
         {/* Tags overlay */}
         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
           {project.tags.slice(0, 3).map((tag) => (
-            <ProjectTag key={tag} tag={tag} />
+            <span 
+              key={tag}
+              className="px-2 py-1 bg-card text-[10px] font-bold uppercase tracking-wider border border-primary"
+            >
+              {tag}
+            </span>
           ))}
         </div>
       </div>
