@@ -185,7 +185,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
       className="min-h-screen"
     >
       {/* Back button */}
-      <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b-2 border-primary">
+      <div className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b-2 border-primary">
         <div className="p-4 pl-16 md:pl-6 md:p-6 flex justify-end">
           <button
             onClick={onBack}
