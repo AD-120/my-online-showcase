@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { Project } from '@/types/portfolio';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { getProjectDetailedData } from '@/data/projectsData';
