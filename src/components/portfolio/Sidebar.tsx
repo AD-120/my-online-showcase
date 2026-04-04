@@ -48,7 +48,7 @@ const Sidebar = ({
   const [isOpen, setIsOpen] = useState(false);
   return <>
       {/* Mobile menu button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="fixed top-4 left-4 z-50 md:hidden p-3 bg-card border-2 border-primary neo-shadow-black" aria-label="Toggle menu">
+      <button onClick={() => setIsOpen(!isOpen)} className="fixed top-4 left-4 z-50 md:hidden p-3 bg-card border-2 border-primary neo-shadow-black px-[4px] py-[4px]" aria-label="Toggle menu">
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
