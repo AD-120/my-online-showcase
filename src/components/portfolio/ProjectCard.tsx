@@ -68,12 +68,7 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
         {/* Tags overlay */}
         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
           {project.tags.slice(0, 3).map((tag) => (
-            <span 
-              key={tag}
-              className="px-2 py-1 bg-card text-[10px] font-bold uppercase tracking-wider border border-primary"
-            >
-              {tag}
-            </span>
+            <ProjectTag key={tag} tag={tag} />
           ))}
         </div>
       </div>
