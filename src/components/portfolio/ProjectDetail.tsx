@@ -47,9 +47,11 @@ const ProjectImage = ({ src, alt, className = '' }: { src: string; alt: string; 
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, margin: '-30px' }}
     transition={{ duration: 0.7, ease: 'easeOut' }}
-    className={`overflow-hidden ${className}`}
+    className={`overflow-hidden flex justify-center ${className}`}
   >
-    <img src={src} alt={alt} className="w-full h-auto max-w-[800px] mx-auto object-contain" loading="lazy" />
+    <div className="aspect-square w-full max-w-[400px]">
+      <img src={src} alt={alt} className="w-full h-full object-cover object-center" loading="lazy" />
+    </div>
   </motion.div>
 );
 
