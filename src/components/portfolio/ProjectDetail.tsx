@@ -186,7 +186,6 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const imageChunks = getImageChunks(galleryImages);
 
   // Split image chunks to interleave with content sections
   const heroImages = imageChunks.slice(0, 1);
