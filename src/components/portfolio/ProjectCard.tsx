@@ -56,7 +56,7 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
       `}
     >
       {/* Thumbnail */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-square overflow-hidden">
         <img 
           src={project.thumbnail} 
           alt={project.title}
