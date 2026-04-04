@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { Project } from '@/types/portfolio';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { getProjectDetailedData } from '@/data/projectsData';
@@ -169,6 +170,22 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   const detailedData = getProjectDetailedData(project.id);
   const galleryImages = project.details?.galleryImages || [];
   const imageChunks = getImageChunks(galleryImages);
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Split image chunks to interleave with content sections
   const heroImages = imageChunks.slice(0, 1);
@@ -185,7 +202,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
       className="min-h-screen"
     >
       {/* Back button */}
-      <div className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b-2 border-primary">
+      <div className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b-2 border-primary transition-transform duration-200 ${showHeader ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="p-4 pl-16 md:pl-6 md:p-6 flex justify-end">
           <button
             onClick={onBack}
