@@ -96,6 +96,34 @@ export const PROJECTS: Project[] = [
     }
   },
   {
+    id: 'steps-to-hebrew',
+    title: 'Steps to Hebrew',
+    subtitle: 'Gamified Language Learning App',
+    client: 'Steps to Hebrew',
+    description: 'An interactive platform for French speakers learning Hebrew, transforming education into a dynamic, gamified experience with AI-driven conversations.',
+    thumbnail: '/projects/steps_18.png',
+    categories: ['LXD', 'UX/UI', 'AI'],
+    highlightColor: 'blue',
+    tags: ['EdTech', 'Gamification', 'AI'],
+    details: {
+      challenge: 'Transforming an existing educational product into a dynamic, engaging experience.',
+      process: 'Redesigning user flow, brand character, gamification layer, and AI conversation interface.',
+      results: 'A comprehensive gamified learning platform with AI-powered practice.',
+      galleryImages: [
+        '/projects/steps_1.png',
+        '/projects/steps_18.png',
+        '/projects/steps_12.png',
+        '/projects/steps_2.png',
+        '/projects/steps_3.png',
+        '/projects/steps_4.png',
+        '/projects/steps_5.png',
+        '/projects/steps_6.png',
+        '/projects/steps_14.png',
+        '/projects/steps_16.png'
+      ]
+    }
+  },
+  {
     id: 'mammoth-o-matic',
     title: 'Mammoth-O-Matic',
     subtitle: 'Interactive Sculpture',

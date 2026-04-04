@@ -292,6 +292,39 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
     tools: ['AI', 'Sculpture', 'Interactive Design', 'Arduino']
   },
   {
+    id: 'steps-to-hebrew',
+    title: 'Steps to Hebrew',
+    client: 'Steps to Hebrew',
+    role: ['UX/UI Designer', 'Brand Designer', 'Gamification Designer'],
+    description: 'Steps to Hebrew is an interactive platform designed for French speakers learning Hebrew. The challenge was to transform an existing educational product into a dynamic, engaging, and action-oriented experience. This involved redesigning the user flow to intuitively guide learners from their first step to full language proficiency.',
+    challenges: [
+      'Transforming a static educational product into an engaging, action-oriented experience',
+      'Designing an intuitive user flow for learners at different proficiency levels',
+      'Creating a gamification system that drives retention without feeling forced',
+      'Building an AI conversation interface that simulates real-world Hebrew interactions'
+    ],
+    process: '01 / The Identity — Breathing Life into the Guide\nThe core of the project began with a complete redesign of the brand\'s character. The goal was to create more than just an icon — a companion that builds trust and sympathy. The original character was evolved into a modern, accessible, and versatile illustration capable of reacting to the user\'s progress — celebrating successes and providing encouragement during challenging moments.\n\n02 / The Architecture — Defining the Flow\nWe re-mapped the User Journey to eliminate friction. A new information architecture was developed, focusing on two primary user personas. This covered everything from a seamless Onboarding process to a Personal Dashboard that allows for precise tracking of learning progress and lesson summaries.\n\n03 / The Mechanism — Gamification & Reward Systems\nTo ensure high retention, a comprehensive gamification layer was implemented. This included the design of four unique "Step Coins" and a card-based achievement system (Badges). Each "win" within the system was designed as an immediate visual reward, reinforcing the learner\'s sense of accomplishment.\n\n04 / The Innovation — AI-Driven Conversations\nA key highlight of the project was the design of the AI-powered conversation interface. We created a practice environment (Chat/Avatar) that simulates real-world scenarios — from ordering coffee to complex daily interactions — bridging the gap between theoretical study and actual speaking.',
+    deliverables: [
+      {
+        title: 'UX Strategy',
+        description: 'User Flow mapping & Information Architecture for the complete learning journey.'
+      },
+      {
+        title: 'Visual Design',
+        description: 'Brand character redesign & comprehensive UI system across all screens.'
+      },
+      {
+        title: 'Gamification System',
+        description: 'Step Coins & Achievement Badges system designed to drive retention and reward progress.'
+      },
+      {
+        title: 'AI Conversation Interface',
+        description: 'Personal Dashboard & AI-powered conversation practice simulating real-world scenarios.'
+      }
+    ],
+    tools: ['Figma', 'Illustration', 'Gamification Design', 'AI Integration', 'User Research']
+  },
+  {
     id: 'exceeding-entirety',
     title: 'Exceeding the Entirety',
     client: undefined,
