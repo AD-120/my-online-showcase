@@ -58,8 +58,8 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         neo: {
-          pink: "hsl(var(--neo-pink))",
-          yellow: "hsl(var(--neo-yellow))",
+          pink: "#EC008C",
+          yellow: "#FFD500",
           blue: "hsl(var(--neo-blue))",
         },
       },
