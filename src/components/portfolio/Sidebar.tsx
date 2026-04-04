@@ -46,9 +46,26 @@ const Sidebar = ({
   onHomeClick
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 50) {
+        setShowButton(false);
+      } else {
+        setShowButton(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return <>
       {/* Mobile menu button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="fixed top-4 right-4 z-[60] md:hidden p-3 bg-card border-2 border-primary neo-shadow-black px-[4px] py-[4px]" aria-label="Toggle menu">
+      <button onClick={() => setIsOpen(!isOpen)} className={`fixed top-4 right-4 z-[60] md:hidden p-3 bg-card border-2 border-primary neo-shadow-black px-[4px] py-[4px] transition-transform duration-200 ${showButton || isOpen ? 'translate-y-0' : '-translate-y-20'}`} aria-label="Toggle menu">
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
