@@ -165,7 +165,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
       {/* Sticky header */}
       <div className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b-2 border-primary transition-transform duration-200 ${showHeader ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="p-4 pl-16 md:pl-6 md:p-6 flex justify-end">
+        <div className="p-4 pr-16 md:pr-6 md:p-6 flex justify-start items-center">
           <button
             onClick={onBack}
             className="inline-flex items-center gap-2 px-4 text-xs font-bold uppercase tracking-widest text-foreground border-2 border-primary bg-card neo-shadow-black transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary))] text-center py-[6px]"

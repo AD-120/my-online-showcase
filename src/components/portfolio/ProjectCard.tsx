@@ -4,6 +4,7 @@ import { Project } from '@/types/portfolio';
 
 interface ProjectCardProps {
   project: Project;
+  fromCategory?: string;
   onClick?: (project: Project) => void;
 }
 
@@ -25,14 +26,14 @@ const getHoverShadowStyle = (color: Project['highlightColor']) => {
   }
 };
 
-const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
+const ProjectCard = ({ project, fromCategory, onClick }: ProjectCardProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (onClick) {
       onClick(project);
     } else {
-      navigate(`/project/${project.id}`);
+      navigate(`/project/${project.id}`, { state: { fromCategory: fromCategory ?? 'All' } });
     }
   };
 

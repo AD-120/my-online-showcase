@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useMemo, useEffect } from 'react';
 import Sidebar from '@/components/portfolio/Sidebar';
 import ProjectDetail from '@/components/portfolio/ProjectDetail';
@@ -9,6 +9,8 @@ import { Category } from '@/types/portfolio';
 const ProjectPage = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const fromCategory = (location.state as { fromCategory?: string })?.fromCategory ?? 'All';
 
   const project = useMemo(() => {
     return PROJECTS.find(p => p.id === projectId);
@@ -19,7 +21,7 @@ const ProjectPage = () => {
   }, [projectId]);
 
   const handleBack = () => {
-    navigate('/');
+    navigate('/', { state: { category: fromCategory } });
   };
 
   const handleCategorySelect = (category: Category) => {

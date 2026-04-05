@@ -64,9 +64,10 @@ const Index = () => {
             >
               <AnimatePresence>
                 {filteredProjects.map((project) => (
-                  <ProjectCard 
-                    key={project.id} 
-                    project={project} 
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    fromCategory={activeCategory}
                   />
                 ))}
               </AnimatePresence>
