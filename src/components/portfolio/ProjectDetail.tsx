@@ -122,24 +122,265 @@ const TextWithImage = ({
     </div>
   </FadeIn>
 );
-  <FadeIn className="my-16">
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-start ${reverse ? 'md:[direction:rtl]' : ''}`}>
-      <div className={reverse ? 'md:[direction:ltr]' : ''}>
-        <SectionLabel>{label}</SectionLabel>
-        <p className="text-sm md:text-base leading-relaxed text-foreground/85 whitespace-pre-line">
-          {text}
-        </p>
-      </div>
-      {imageSrc && (
-        <div className={reverse ? 'md:[direction:ltr]' : ''}>
-          <SquareImage src={imageSrc} alt={imageAlt} className="border-2 border-primary neo-shadow-black" />
-        </div>
-      )}
-    </div>
-  </FadeIn>
-);
 
 const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
+  const detailedData = getProjectDetailedData(project.id);
+  const galleryImages = project.details?.galleryImages || [];
+  const [showHeader, setShowHeader] = useState(true);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const openLightbox = (src: string) => setLightboxSrc(src);
+  const closeLightbox = () => setLightboxSrc(null);
+
+  // Distribute images across sections
+  const img = (index: number) => galleryImages[index] || undefined;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+      className="min-h-screen"
+    >
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxSrc && <Lightbox src={lightboxSrc} onClose={closeLightbox} />}
+      </AnimatePresence>
+
+      {/* Sticky header */}
+      <div className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b-2 border-primary transition-transform duration-200 ${showHeader ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className="p-4 pl-16 md:pl-6 md:p-6 flex justify-end">
+          <button
+            onClick={onBack}
+            className="inline-flex items-center gap-2 px-4 text-xs font-bold uppercase tracking-widest text-foreground border-2 border-primary bg-card neo-shadow-black transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary))] text-center py-[6px]"
+          >
+            <ArrowLeft size={16} />
+            Back to Projects
+          </button>
+        </div>
+      </div>
+
+      {/* Hero banner */}
+      <div className="relative overflow-hidden border-b-2 border-primary">
+        <motion.img
+          src={project.thumbnail}
+          alt={project.title}
+          className="w-full h-[25vh] md:h-[32vh] object-cover"
+          style={{ objectPosition: project.thumbnailFocus ?? 'center' }}
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+      </div>
+
+      {/* Content */}
+      <div className="px-6 md:px-12 lg:px-20 max-w-6xl mx-auto">
+
+        {/* Title */}
+        <FadeIn className="pt-12 pb-6">
+          {project.subtitle && (
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground mb-3">
+              {project.subtitle}
+            </p>
+          )}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-black italic mb-4 leading-[1.1]">
+            {detailedData?.title || project.title}
+          </h1>
+          <div className={`h-1 w-24 ${getAccentColor(project.highlightColor)}`} />
+        </FadeIn>
+
+        {/* Meta bar */}
+        <FadeIn delay={0.1} className="mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-card border-2 border-primary neo-shadow-black">
+            {(detailedData?.client || project.client) && (
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">Client</p>
+                <p className="text-sm font-semibold">{detailedData?.client || project.client}</p>
+              </div>
+            )}
+            {detailedData?.role && (
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">Role</p>
+                {Array.isArray(detailedData.role) ? (
+                  <ul className="space-y-0.5">
+                    {detailedData.role.map((r, idx) => (
+                      <li key={idx} className="text-xs font-medium">{r}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm font-semibold">{detailedData.role}</p>
+                )}
+              </div>
+            )}
+            {detailedData?.tools && detailedData.tools.length > 0 && (
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">Tools</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {detailedData.tools.map((tool) => (
+                    <span key={tool} className="px-2 py-0.5 bg-secondary text-[10px] font-bold uppercase tracking-wider border border-primary">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </FadeIn>
+
+        {/* Overview — text + first image side by side */}
+        <TextWithImage
+          label="Overview"
+          text={detailedData?.description || project.description}
+          imageSrc={img(0)}
+          imageAlt={project.title}
+          accentColor={getAccentColor(project.highlightColor)}
+          onImageClick={openLightbox}
+        />
+
+        {/* External Link */}
+        {detailedData?.externalLink && (
+          <FadeIn className="mb-8">
+            <a
+              href={detailedData.externalLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-foreground border-2 border-primary bg-card neo-shadow-black transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary))]"
+            >
+              <ExternalLink size={14} />
+              View Live Project
+            </a>
+          </FadeIn>
+        )}
+
+        {/* Image row — 2 squares */}
+        {galleryImages.length > 2 && (
+          <FadeIn className="my-14">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[img(1), img(2)].filter(Boolean).map((src, i) => (
+                <SquareImage key={i} src={src!} alt={`${project.title} ${i + 2}`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(src!)} />
+              ))}
+            </div>
+          </FadeIn>
+        )}
+
+        {/* Challenges — text + image side by side (reversed) */}
+        {detailedData?.challenges && detailedData.challenges.length > 0 && (
+          <FadeIn className="my-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              {img(3) && (
+                <SquareImage src={img(3)!} alt={`${project.title} challenge`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(3)!)} />
+              )}
+              <div>
+                <SectionLabel>Key Challenges</SectionLabel>
+                <div className="space-y-3">
+                  {detailedData.challenges.map((challenge, idx) => (
+                    <div
+                      key={idx}
+                      className={`p-4 border-l-4 ${getAccentBorder(project.highlightColor)} bg-card border border-primary/20`}
+                    >
+                      <p className="text-sm leading-relaxed">{challenge}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        )}
+
+        {/* Image row — 3 squares */}
+        {galleryImages.length > 6 && (
+          <FadeIn className="my-14">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[img(4), img(5), img(6)].filter(Boolean).map((src, i) => (
+                <SquareImage key={i} src={src!} alt={`${project.title} ${i + 5}`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(src!)} />
+              ))}
+            </div>
+          </FadeIn>
+        )}
+
+        {/* Process — text + image side by side */}
+        {detailedData?.process && (
+          <TextWithImage
+            label="The Process"
+            text={detailedData.process}
+            imageSrc={img(7)}
+            imageAlt={`${project.title} process`}
+            accentColor={getAccentColor(project.highlightColor)}
+            reverse
+            onImageClick={openLightbox}
+          />
+        )}
+
+        {/* Image row — 2 squares */}
+        {galleryImages.length > 9 && (
+          <FadeIn className="my-14">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[img(8), img(9)].filter(Boolean).map((src, i) => (
+                <SquareImage key={i} src={src!} alt={`${project.title} ${i + 9}`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(src!)} />
+              ))}
+            </div>
+          </FadeIn>
+        )}
+
+        {/* Deliverables */}
+        {detailedData?.deliverables && detailedData.deliverables.length > 0 && (
+          <FadeIn className="my-16">
+            <SectionLabel>What Was Delivered</SectionLabel>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {detailedData.deliverables.map((deliverable, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  className="p-6 bg-card border-2 border-primary neo-shadow-black"
+                >
+                  <span className={`inline-block w-6 h-0.5 ${getAccentColor(project.highlightColor)} mb-3`} />
+                  <h4 className="text-base font-serif font-bold italic mb-2">{deliverable.title}</h4>
+                  <p className="text-sm text-foreground/80 leading-relaxed">{deliverable.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </FadeIn>
+        )}
+
+        {/* Remaining images — grid of squares */}
+        {galleryImages.length > 10 && (
+          <FadeIn className="my-14">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {galleryImages.slice(10).map((src, i) => (
+                <SquareImage key={i} src={src} alt={`${project.title} ${i + 11}`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(src)} />
+              ))}
+            </div>
+          </FadeIn>
+        )}
+
+        {/* Bottom spacing */}
+        <div className="pb-16" />
+      </div>
+    </motion.div>
+  );
+};
+
+export default ProjectDetail;
   const detailedData = getProjectDetailedData(project.id);
   const galleryImages = project.details?.galleryImages || [];
   const [showHeader, setShowHeader] = useState(true);
