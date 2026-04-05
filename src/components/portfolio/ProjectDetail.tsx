@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Project } from '@/types/portfolio';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, X } from 'lucide-react';
 import { getProjectDetailedData } from '@/data/projectsData';
 
 interface ProjectDetailProps {
@@ -27,6 +27,45 @@ const getAccentBorder = (color: Project['highlightColor']) => {
   }
 };
 
+// Lightbox modal
+const Lightbox = ({ src, onClose }: { src: string; onClose: () => void }) => {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKey);
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', handleKey); };
+  }, [onClose]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-md" />
+      <motion.img
+        src={src}
+        alt=""
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="relative z-10 max-w-[90vw] max-h-[85vh] object-contain"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-card border-2 border-primary neo-shadow-black text-foreground hover:bg-secondary transition-colors"
+      >
+        <X size={20} />
+      </button>
+    </motion.div>
+  );
+};
+
 // Fade-in animation wrapper
 const FadeIn = ({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) => (
   <motion.div
@@ -40,21 +79,21 @@ const FadeIn = ({ children, delay = 0, className = '' }: { children: React.React
   </motion.div>
 );
 
-// Square image component
-const SquareImage = ({ src, alt, className = '' }: { src: string; alt: string; className?: string }) => (
+// Square image component - clickable
+const SquareImage = ({ src, alt, className = '', onClick }: { src: string; alt: string; className?: string; onClick?: () => void }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.98 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, margin: '-30px' }}
     transition={{ duration: 0.7, ease: 'easeOut' }}
-    className={`overflow-hidden ${className}`}
+    className={`overflow-hidden cursor-pointer ${className}`}
+    onClick={onClick}
   >
     <div className="aspect-square w-full">
-      <img src={src} alt={alt} className="w-full h-full object-cover object-center" loading="lazy" />
+      <img src={src} alt={alt} className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105" loading="lazy" />
     </div>
   </motion.div>
 );
-
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground mb-4">
     {children}
