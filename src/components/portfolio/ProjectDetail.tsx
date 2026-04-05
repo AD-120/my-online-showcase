@@ -102,10 +102,26 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 
 // Text + Image side-by-side section
 const TextWithImage = ({ 
-  label, text, imageSrc, imageAlt, accentColor, reverse = false 
+  label, text, imageSrc, imageAlt, accentColor, reverse = false, onImageClick 
 }: { 
-  label: string; text: string; imageSrc?: string; imageAlt: string; accentColor: string; reverse?: boolean 
+  label: string; text: string; imageSrc?: string; imageAlt: string; accentColor: string; reverse?: boolean; onImageClick?: (src: string) => void 
 }) => (
+  <FadeIn className="my-16">
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-start ${reverse ? 'md:[direction:rtl]' : ''}`}>
+      <div className={reverse ? 'md:[direction:ltr]' : ''}>
+        <SectionLabel>{label}</SectionLabel>
+        <p className="text-sm md:text-base leading-relaxed text-foreground/85 whitespace-pre-line">
+          {text}
+        </p>
+      </div>
+      {imageSrc && (
+        <div className={reverse ? 'md:[direction:ltr]' : ''}>
+          <SquareImage src={imageSrc} alt={imageAlt} className="border-2 border-primary neo-shadow-black" onClick={() => onImageClick?.(imageSrc)} />
+        </div>
+      )}
+    </div>
+  </FadeIn>
+);
   <FadeIn className="my-16">
     <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-start ${reverse ? 'md:[direction:rtl]' : ''}`}>
       <div className={reverse ? 'md:[direction:ltr]' : ''}>
