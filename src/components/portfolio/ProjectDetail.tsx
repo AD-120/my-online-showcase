@@ -381,7 +381,6 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 };
 
 export default ProjectDetail;
-  const detailedData = getProjectDetailedData(project.id);
   const galleryImages = project.details?.galleryImages || [];
   const [showHeader, setShowHeader] = useState(true);
   const lastScrollY = useRef(0);
