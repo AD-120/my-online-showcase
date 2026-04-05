@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Project } from '@/types/portfolio';
-import { ArrowLeft, ExternalLink, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, X } from 'lucide-react';
 import { getProjectDetailedData } from '@/data/projectsData';
 
 interface ProjectDetailProps {
@@ -28,13 +28,22 @@ const getAccentBorder = (color: Project['highlightColor']) => {
 };
 
 // Lightbox modal
-const Lightbox = ({ src, onClose }: { src: string; onClose: () => void }) => {
+const Lightbox = ({ src, onClose, onPrev, onNext }: {
+  src: string;
+  onClose: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
+}) => {
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') onPrev?.();
+      if (e.key === 'ArrowRight') onNext?.();
+    };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKey);
     return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', handleKey); };
-  }, [onClose]);
+  }, [onClose, onPrev, onNext]);
 
   return (
     <motion.div
@@ -46,22 +55,47 @@ const Lightbox = ({ src, onClose }: { src: string; onClose: () => void }) => {
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-background/80 backdrop-blur-md" />
-      <motion.img
-        src={src}
-        alt=""
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="relative z-10 max-w-[90vw] max-h-[85vh] object-contain"
-        onClick={(e) => e.stopPropagation()}
-      />
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={src}
+          src={src}
+          alt=""
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="relative z-10 max-w-[80vw] max-h-[85vh] object-contain"
+          onClick={(e) => e.stopPropagation()}
+        />
+      </AnimatePresence>
+
+      {/* Close */}
       <button
         onClick={onClose}
         className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-card border-2 border-primary neo-shadow-black text-foreground hover:bg-secondary transition-colors"
       >
         <X size={20} />
       </button>
+
+      {/* Prev arrow */}
+      {onPrev && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onPrev(); }}
+          className="absolute left-4 md:left-8 z-20 w-12 h-12 flex items-center justify-center bg-card border-2 border-primary neo-shadow-black text-foreground hover:bg-secondary transition-colors"
+        >
+          <ArrowLeft size={22} />
+        </button>
+      )}
+
+      {/* Next arrow */}
+      {onNext && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onNext(); }}
+          className="absolute right-4 md:right-8 z-20 w-12 h-12 flex items-center justify-center bg-card border-2 border-primary neo-shadow-black text-foreground hover:bg-secondary transition-colors"
+        >
+          <ArrowRight size={22} />
+        </button>
+      )}
     </motion.div>
   );
 };
@@ -129,6 +163,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   const galleryImages = project.details?.galleryImages || [];
   const [showHeader, setShowHeader] = useState(true);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -145,8 +180,18 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const openLightbox = (src: string) => setLightboxSrc(src);
-  const closeLightbox = () => setLightboxSrc(null);
+  const openLightbox = (src: string) => {
+    const idx = galleryImages.indexOf(src);
+    setLightboxSrc(src);
+    setLightboxIndex(idx >= 0 ? idx : null);
+  };
+  const closeLightbox = () => { setLightboxSrc(null); setLightboxIndex(null); };
+  const lightboxPrev = lightboxIndex !== null && lightboxIndex > 0
+    ? () => { const i = lightboxIndex - 1; setLightboxIndex(i); setLightboxSrc(galleryImages[i]); }
+    : undefined;
+  const lightboxNext = lightboxIndex !== null && lightboxIndex < galleryImages.length - 1
+    ? () => { const i = lightboxIndex + 1; setLightboxIndex(i); setLightboxSrc(galleryImages[i]); }
+    : undefined;
 
   const img = (index: number) => galleryImages[index] || undefined;
 
@@ -160,7 +205,14 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     >
       {/* Lightbox */}
       <AnimatePresence>
-        {lightboxSrc && <Lightbox src={lightboxSrc} onClose={closeLightbox} />}
+        {lightboxSrc && (
+          <Lightbox
+            src={lightboxSrc}
+            onClose={closeLightbox}
+            onPrev={project.uniformGallery ? lightboxPrev : undefined}
+            onNext={project.uniformGallery ? lightboxNext : undefined}
+          />
+        )}
       </AnimatePresence>
 
       {/* Sticky header */}
@@ -234,7 +286,11 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                 <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">Tools</p>
                 <div className="flex flex-wrap gap-1.5">
                   {detailedData.tools.map((tool) => (
-                    <span key={tool} className="px-2 py-0.5 bg-secondary text-[10px] font-bold uppercase tracking-wider border border-primary">
+                    <span
+                      key={tool}
+                      className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-primary/40 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]"
+                      style={{ backgroundColor: `hsl(var(--tag-${tool.toLowerCase().replace(/[\s\/]+/g, '-')}))` }}
+                    >
                       {tool}
                     </span>
                   ))}
@@ -245,14 +301,38 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         </FadeIn>
 
         {/* Overview */}
-        <TextWithImage
-          label="Overview"
-          text={detailedData?.description || project.description}
-          imageSrc={img(0)}
-          imageAlt={project.title}
-          accentColor={getAccentColor(project.highlightColor)}
-          onImageClick={openLightbox}
-        />
+        {project.uniformGallery ? (
+          <>
+            <FadeIn className="mb-10">
+              <SectionLabel>Overview</SectionLabel>
+              <p className="text-lg md:text-xl leading-relaxed text-foreground/90 max-w-3xl">
+                {detailedData?.description || project.description}
+              </p>
+            </FadeIn>
+            <FadeIn className="mb-16">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {galleryImages.map((src, i) => (
+                  <SquareImage
+                    key={i}
+                    src={src}
+                    alt={`${project.title} ${i + 1}`}
+                    className="border-2 border-primary neo-shadow-black"
+                    onClick={() => openLightbox(src)}
+                  />
+                ))}
+              </div>
+            </FadeIn>
+          </>
+        ) : (
+          <TextWithImage
+            label="Overview"
+            text={detailedData?.description || project.description}
+            imageSrc={img(0)}
+            imageAlt={project.title}
+            accentColor={getAccentColor(project.highlightColor)}
+            onImageClick={openLightbox}
+          />
+        )}
 
         {/* External Link */}
         {detailedData?.externalLink && (
@@ -270,7 +350,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         )}
 
         {/* Image row — 2 squares */}
-        {galleryImages.length > 2 && (
+        {!project.uniformGallery && galleryImages.length > 2 && (
           <FadeIn className="my-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[img(1), img(2)].filter(Boolean).map((src, i) => (
@@ -302,7 +382,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         )}
 
         {/* Image row — 3 squares */}
-        {galleryImages.length > 6 && (
+        {!project.uniformGallery && galleryImages.length > 6 && (
           <FadeIn className="my-14">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[img(4), img(5), img(6)].filter(Boolean).map((src, i) => (
@@ -326,7 +406,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         )}
 
         {/* Image row — 2 squares */}
-        {galleryImages.length > 9 && (
+        {!project.uniformGallery && galleryImages.length > 9 && (
           <FadeIn className="my-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[img(8), img(9)].filter(Boolean).map((src, i) => (
@@ -360,7 +440,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         )}
 
         {/* Remaining images */}
-        {galleryImages.length > 10 && (
+        {!project.uniformGallery && galleryImages.length > 10 && (
           <FadeIn className="my-14">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {galleryImages.slice(10).map((src, i) => (

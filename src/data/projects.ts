@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     subtitle: 'Educational App Design',
     client: 'Kibbutzim College',
     description: 'A portfolio management app for design students to track their progress, collaborate with peers, and showcase ongoing work.',
-    thumbnail: '/projects/kibu_1.png',
+    thumbnail: '/projects/kibu_logo.png',
     categories: ['LXD', 'UX/UI'],
     highlightColor: 'yellow',
     tags: ['EdTech', 'Mobile', 'Education'],
@@ -87,13 +87,11 @@ export const PROJECTS: Project[] = [
       process: 'Process details to be added.',
       results: 'Results details to be added.',
       galleryImages: [
+        '/projects/kibu_1.png',
         '/projects/kibu_2.png',
         '/projects/kibu_3.png',
         '/projects/kibu_4.png',
-        '/projects/kibu_5.png',
-        '/projects/kibu_6.png',
-        '/projects/kibu_7.png',
-        '/projects/kibu_8.png'
+        '/projects/kibu_5.png'
       ]
     }
   },
@@ -292,33 +290,34 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'digital-illustrations',
-    title: 'Illustrations',
+    title: 'Digital & Analog Illustrations',
     subtitle: 'Digital Art',
     description: 'A collection of digital illustrations, character designs, and concept art.',
-    thumbnail: '/projects/digital art1.gif',
+    thumbnail: '/projects/shoot_him.jpg',
     categories: ['Digital Art'],
     highlightColor: 'pink',
     tags: ['Illustration', 'Visual Art'],
+    uniformGallery: true,
     details: {
       challenge: 'Challenge details to be added.',
       process: 'Process details to be added.',
       results: 'Results details to be added.',
       galleryImages: [
-        '/projects/digital drawings_1.jpg',
-        '/projects/digital drawings_2.png',
-        '/projects/digital drawings_3.png',
-        '/projects/digital drawings_4.png',
-        '/projects/digital drawings_5.png',
-        '/projects/digital drawings_6.png',
-        '/projects/digital drawings_7.png',
-        '/projects/digital drawings_8.png',
-        '/projects/digital drawings_9.png',
-        '/projects/digital drawings_10.png',
-        '/projects/digital drawings_11.jpg',
-        '/projects/digital art2.jpg',
         '/projects/digital art3.jpg',
-        '/projects/digital art4.jpg',
-        '/projects/digital art5.gif'
+        '/projects/3.png',
+        '/projects/shoot_him.jpg',
+        '/projects/digital drawings_6.jpg',
+        '/projects/digital art1.gif',
+        '/projects/1.png',
+        '/projects/mermaid_3.gif',
+        '/projects/digital drawings_1.jpg',
+        '/projects/4.png',
+        '/projects/digital art5.gif',
+        '/projects/2.png',
+        '/projects/digital drawings_7.jpg',
+        '/projects/digital art2.jpg',
+        '/projects/5.png',
+        '/projects/digital drawings_5.jpg'
       ]
     }
   },

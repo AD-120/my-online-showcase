@@ -71,7 +71,38 @@
     --tag-illustration: 348 100% 90%;
     --tag-generative-art: 280 70% 90%;
     --tag-visual-art: 45 90% 85%;
-    
+
+    /* Tool colors */
+    --tag-figma: 262 80% 88%;
+    --tag-adobe-suite: 15 90% 85%;
+    --tag-digital-illustration: 348 100% 90%;
+    --tag-user-research: 199 70% 85%;
+    --tag-user-interview: 199 70% 85%;
+    --tag-research: 199 70% 85%;
+    --tag-usability-testing: 210 65% 85%;
+    --tag-pain-point-analysis: 210 65% 85%;
+    --tag-prototyping: 160 60% 85%;
+    --tag-wireframing: 160 55% 85%;
+    --tag-information-architecture: 48 97% 85%;
+    --tag-cross-government-alignment: 48 90% 85%;
+    --tag-brand-strategy: 30 100% 88%;
+    --tag-brand-guidelines: 30 100% 88%;
+    --tag-print-design: 170 55% 82%;
+    --tag-packaging-design: 25 85% 85%;
+    --tag-visual-design: 140 50% 85%;
+    --tag-digital-design: 140 50% 85%;
+    --tag-technical-writing: 140 45% 85%;
+    --tag-learning-design: 160 50% 85%;
+    --tag-interactive-design: 348 90% 88%;
+    --tag-experience-design: 262 75% 88%;
+    --tag-app-design: 262 75% 88%;
+    --tag-gamification-design: 30 95% 88%;
+    --tag-ai-integration: 280 70% 90%;
+    --tag-arduino: 160 60% 82%;
+    --tag-javascript: 48 97% 85%;
+    --tag-live-coding: 280 60% 88%;
+    --tag-ink,-pen-and-oil-colors: 25 80% 85%;
+
     /* Semantic tokens */
     --hero-bg: 0 0% 97.6%;
     --sidebar-bg: 0 0% 100%;

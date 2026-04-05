@@ -257,21 +257,12 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
   },
   {
     id: 'digital-illustrations',
-    title: 'Digital Illustrations',
+    title: 'Digital & Analog Illustrations',
     client: undefined,
     role: 'Digital Illustrator',
-    description: 'An assortment of digital illustration works showcasing character designs and concept art.',
-    deliverables: [
-      {
-        title: 'Character Designs',
-        description: 'Original character illustrations and concepts.'
-      },
-      {
-        title: 'Concept Art',
-        description: 'Visual explorations and artistic concepts.'
-      }
-    ],
-    tools: ['Digital Illustration', 'Adobe Suite', 'Procreate']
+    description: 'A collection of hand-drawn illustrations, digital art, and experimental sketches, showcasing a diverse range of my visual explorations.',
+    deliverables: [],
+    tools: ['Digital Illustration', 'Adobe Suite', 'Ink, Pen and Oil Colors']
   },
   {
     id: 'mammoth-o-matic',
