@@ -37,6 +37,57 @@ export const PROJECTS: Project[] = [
     }
   },
   {
+    id: 'steps-to-hebrew',
+    title: 'Steps to Hebrew',
+    subtitle: 'Gamified Language Learning App',
+    client: 'Steps to Hebrew',
+    description: 'An interactive platform for French speakers learning Hebrew, transforming education into a dynamic, gamified experience with AI-driven conversations.',
+    thumbnail: '/projects/steps_1.png',
+    categories: ['LXD', 'UX/UI', 'Graphic Design'],
+    highlightColor: 'blue',
+    tags: ['EdTech', 'Gamification', 'AI'],
+    details: {
+      challenge: 'Transforming an existing educational product into a dynamic, engaging experience.',
+      process: 'Redesigning user flow, brand character, gamification layer, and AI conversation interface.',
+      results: 'A comprehensive gamified learning platform with AI-powered practice.',
+      galleryImages: [
+        '/projects/steps_6.png',
+        '/projects/steps_18.png',
+        '/projects/steps_12.png',
+        '/projects/steps_2.png',
+        '/projects/steps_3.png',
+        '/projects/steps_4.png',
+        '/projects/steps_5.png',
+        '/projects/steps_1.png',
+        '/projects/steps_14.png',
+        '/projects/steps_16.png'
+      ]
+    }
+  },
+  {
+    id: 'kibu-app',
+    title: 'KIBU App',
+    subtitle: 'Educational App Design',
+    client: 'Kibbutzim College',
+    description: 'A portfolio management app for design students to track their progress, collaborate with peers, and showcase ongoing work.',
+    thumbnail: '/projects/kibu_hero.png',
+    categories: ['LXD', 'UX/UI'],
+    highlightColor: 'yellow',
+    tags: ['EdTech', 'Mobile', 'Education'],
+    details: {
+      challenge: 'Challenge details to be added.',
+      process: 'Process details to be added.',
+      results: 'Results details to be added.',
+      galleryImages: [
+        '/projects/kibu_1.png',
+        '/projects/kibu_2.png',
+        '/projects/kibu_3.png',
+        '/projects/kibu_4.png',
+        '/projects/kibu_5.png'
+      ]
+    }
+  },
+  {
     id: 'small-business-funding',
     title: 'Small Business Funding Portal',
     subtitle: 'Website & UX Redesign',
@@ -69,57 +120,6 @@ export const PROJECTS: Project[] = [
         '/projects/portal_16.png',
         '/projects/portal_17.png',
         '/projects/portal_18.png'
-      ]
-    }
-  },
-  {
-    id: 'kibu-app',
-    title: 'KIBU App',
-    subtitle: 'Educational App Design',
-    client: 'Kibbutzim College',
-    description: 'A portfolio management app for design students to track their progress, collaborate with peers, and showcase ongoing work.',
-    thumbnail: '/projects/kibu_logo.png',
-    categories: ['LXD', 'UX/UI'],
-    highlightColor: 'yellow',
-    tags: ['EdTech', 'Mobile', 'Education'],
-    details: {
-      challenge: 'Challenge details to be added.',
-      process: 'Process details to be added.',
-      results: 'Results details to be added.',
-      galleryImages: [
-        '/projects/kibu_1.png',
-        '/projects/kibu_2.png',
-        '/projects/kibu_3.png',
-        '/projects/kibu_4.png',
-        '/projects/kibu_5.png'
-      ]
-    }
-  },
-  {
-    id: 'steps-to-hebrew',
-    title: 'Steps to Hebrew',
-    subtitle: 'Gamified Language Learning App',
-    client: 'Steps to Hebrew',
-    description: 'An interactive platform for French speakers learning Hebrew, transforming education into a dynamic, gamified experience with AI-driven conversations.',
-    thumbnail: '/projects/steps_6.png',
-    categories: ['LXD', 'UX/UI', 'Graphic Design'],
-    highlightColor: 'blue',
-    tags: ['EdTech', 'Gamification', 'AI'],
-    details: {
-      challenge: 'Transforming an existing educational product into a dynamic, engaging experience.',
-      process: 'Redesigning user flow, brand character, gamification layer, and AI conversation interface.',
-      results: 'A comprehensive gamified learning platform with AI-powered practice.',
-      galleryImages: [
-        '/projects/steps_1.png',
-        '/projects/steps_18.png',
-        '/projects/steps_12.png',
-        '/projects/steps_2.png',
-        '/projects/steps_3.png',
-        '/projects/steps_4.png',
-        '/projects/steps_5.png',
-        '/projects/steps_6.png',
-        '/projects/steps_14.png',
-        '/projects/steps_16.png'
       ]
     }
   },
@@ -255,13 +255,9 @@ export const PROJECTS: Project[] = [
       process: 'Process details to be added.',
       results: 'Results details to be added.',
       galleryImages: [
-        '/projects/cocktail_1.jpg',
-        '/projects/cocktail_2.jpg',
         '/projects/cocktail_2.png',
         '/projects/cocktail_3.jpg',
         '/projects/cocktail_3.png',
-        '/projects/cocktail_4.jpg',
-        '/projects/cocktail_5.jpg',
         '/projects/cocktail_6.png'
       ]
     }
