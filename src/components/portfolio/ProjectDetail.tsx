@@ -114,7 +114,7 @@ const FadeIn = ({ children, delay = 0, className = '' }: { children: React.React
 );
 
 // Square image component - clickable
-const SquareImage = ({ src, alt, className = '', onClick, padded = false, contained = false }: { src: string; alt: string; className?: string; onClick?: () => void; padded?: boolean; contained?: boolean }) => (
+const SquareImage = ({ src, alt, className = '', onClick, padded = false, contained = false, objectPosition = 'center' }: { src: string; alt: string; className?: string; onClick?: () => void; padded?: boolean; contained?: boolean; objectPosition?: string }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.98 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -124,7 +124,7 @@ const SquareImage = ({ src, alt, className = '', onClick, padded = false, contai
     onClick={onClick}
   >
     <div className={`aspect-square w-full flex items-center justify-center${padded ? ' p-[25%] bg-card' : contained ? ' p-3 bg-card' : ''}`}>
-      <img src={src} alt={alt} className={`w-full h-full transition-transform duration-300 hover:scale-105${padded || contained ? ' object-contain' : ' object-cover object-center'}`} loading="lazy" />
+      <img src={src} alt={alt} className={`w-full h-full transition-transform duration-300 hover:scale-105${padded || contained ? ' object-contain' : ' object-cover'}`} style={{ objectPosition }} loading="lazy" />
     </div>
   </motion.div>
 );
@@ -363,7 +363,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             />
             {project.fullWidthOverview && img(0) && (
               <FadeIn className="-mt-8 mb-16">
-                <SquareImage src={img(0)!} alt={project.title} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(0)!)} />
+                <SquareImage src={img(0)!} alt={project.title} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(0)!)} objectPosition="top" />
               </FadeIn>
             )}
           </>

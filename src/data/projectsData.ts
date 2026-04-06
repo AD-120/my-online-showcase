@@ -52,7 +52,7 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
         description: 'Step-by-step procurement processes with consistent patterns and expandable content. Impact: Fewer mistakes and less reliance on external guidance.'
       }
     ],
-    tools: ['User Research', 'Information Architecture', 'Wireframing', 'Prototyping', 'Usability Testing']
+    tools: ['User Interview', 'Research', 'Prototyping']
   },
   {
     id: 'kibu-app',
@@ -85,7 +85,7 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
         description: 'A comprehensive IA to support various user needs and workflows.'
       }
     ],
-    tools: ['Adobe Suite', 'User Interview', 'Research', 'Prototyping', 'Figma']
+    tools: ['Adobe Suite', 'User Interview', 'Research', 'Prototyping']
   },
   {
     id: 'small-business-funding',
@@ -234,7 +234,7 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
     id: 'cocktails-dreams',
     title: 'Cocktails and Dreams',
     client: undefined,
-    role: ['Digital Illustrator', 'Experience Designer'],
+    role: ['Digital Artist', 'Experience Designer'],
     description: 'This app allows visitors to reenact the 80s classic "Cocktails and Dreams", turning it into a kind of visual karaoke. The end result is a remake of the entire movie with the participants as the movie stars, living the American dream.',
     deliverables: [
       {
@@ -250,7 +250,7 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
         description: 'A system for creating personalized movie remakes with participants as stars.'
       }
     ],
-    tools: ['Digital Illustration', 'Experience Design', 'App Design']
+    tools: ['Experience Design', 'App Design']
   },
   {
     id: 'digital-illustrations',
@@ -265,7 +265,7 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
     id: 'mammoth-o-matic',
     title: 'Mammoth-O-Matic',
     client: undefined,
-    role: ['Interactive Artist', 'AI Developer'],
+    role: ['Interactive Artist'],
     description: 'An interactive sculpture of a mammoth head. In response to visitors, the head keeps making crude and sarcastic comments.\n\nThe remains of a prehistoric elephant were actually discovered during excavations conducted in the city of Holon (1964-65). Early human inhabitants of the region approximately 120,000 years ago hunted and consumed mammoths, which are the source of the mammoth bitterness in this project.',
     deliverables: [
       {

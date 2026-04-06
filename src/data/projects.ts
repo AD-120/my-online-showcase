@@ -60,6 +60,7 @@ export const PROJECTS: Project[] = [
     title: 'KIBU App',
     subtitle: 'Educational App Design',
     client: 'Kibbutzim College',
+    fullWidthOverview: true,
     description: 'A portfolio management app for design students to track their progress, collaborate with peers, and showcase ongoing work.',
     thumbnail: '/projects/kibu_hero.png',
     categories: ['LXD', 'UX/UI'],
@@ -118,6 +119,7 @@ export const PROJECTS: Project[] = [
     id: 'mammoth-o-matic',
     title: 'Mammoth-O-Matic',
     subtitle: 'Interactive Sculpture',
+    fullWidthOverview: true,
     description: 'An interactive sculpture of a mammoth head that responds to visitors with crude and sarcastic comments, reflecting the bitterness of prehistoric elephants hunted by early humans.',
     thumbnail: '/projects/mamoth_1.jpg',
     thumbnailFocus: 'center 15%',
@@ -238,6 +240,7 @@ export const PROJECTS: Project[] = [
     subtitle: 'Digital Illustrations & Mobile Game',
     description: 'An interactive experience allowing visitors to reenact the 80s classic "Cocktails and Dreams", turning it into a visual karaoke.',
     thumbnail: '/projects/cocktail_1.png',
+    fullWidthOverview: true,
     categories: ['Digital Art', 'UX/UI', 'LXD'],
     highlightColor: 'pink',
     tags: ['80s', 'Video', 'Experience'],
@@ -247,7 +250,6 @@ export const PROJECTS: Project[] = [
       results: 'Results details to be added.',
       galleryImages: [
         '/projects/cocktail_2.png',
-        '/projects/cocktail_3.jpg',
         '/projects/cocktail_3.png',
         '/projects/cocktail_6.png'
       ]
