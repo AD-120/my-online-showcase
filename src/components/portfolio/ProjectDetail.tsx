@@ -114,7 +114,7 @@ const FadeIn = ({ children, delay = 0, className = '' }: { children: React.React
 );
 
 // Square image component - clickable
-const SquareImage = ({ src, alt, className = '', onClick }: { src: string; alt: string; className?: string; onClick?: () => void }) => (
+const SquareImage = ({ src, alt, className = '', onClick, padded = false, contained = false }: { src: string; alt: string; className?: string; onClick?: () => void; padded?: boolean; contained?: boolean }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.98 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -123,8 +123,8 @@ const SquareImage = ({ src, alt, className = '', onClick }: { src: string; alt: 
     className={`overflow-hidden cursor-pointer ${className}`}
     onClick={onClick}
   >
-    <div className="aspect-square w-full">
-      <img src={src} alt={alt} className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105" loading="lazy" />
+    <div className={`aspect-square w-full flex items-center justify-center${padded ? ' p-[25%] bg-card' : contained ? ' p-3 bg-card' : ''}`}>
+      <img src={src} alt={alt} className={`w-full h-full transition-transform duration-300 hover:scale-105${padded || contained ? ' object-contain' : ' object-cover object-center'}`} loading="lazy" />
     </div>
   </motion.div>
 );
@@ -136,25 +136,52 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 );
 
 // Text + Image side-by-side section
-const TextWithImage = ({ 
-  label, text, imageSrc, imageAlt, accentColor, reverse = false, onImageClick 
-}: { 
-  label: string; text: string; imageSrc?: string; imageAlt: string; accentColor: string; reverse?: boolean; onImageClick?: (src: string) => void 
+// Renders text with lines matching "01 / ..." pattern as bold headers
+const RichText = ({ text, className = '' }: { text: string; className?: string }) => (
+  <div className={`text-sm md:text-base leading-relaxed text-foreground/85 ${className}`}>
+    {text.split('\n').map((line, i) => {
+      const isHeader = /^\d{2}\s*\//.test(line);
+      if (line === '') return <div key={i} className="h-3" />;
+      return (
+        <p key={i} className={isHeader ? 'font-bold mt-4 mb-0.5' : ''}>
+          {line}
+        </p>
+      );
+    })}
+  </div>
+);
+
+const TextWithImage = ({
+  label, text, imageSrc, imageAlt, accentColor, reverse = false, onImageClick, stacked = false
+}: {
+  label: string; text: string; imageSrc?: string; imageAlt: string; accentColor: string; reverse?: boolean; onImageClick?: (src: string) => void; stacked?: boolean
 }) => (
   <FadeIn className="my-16">
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-start ${reverse ? 'md:[direction:rtl]' : ''}`}>
-      <div className={reverse ? 'md:[direction:ltr]' : ''}>
-        <SectionLabel>{label}</SectionLabel>
-        <p className="text-sm md:text-base leading-relaxed text-foreground/85 whitespace-pre-line">
-          {text}
-        </p>
-      </div>
-      {imageSrc && (
-        <div className={reverse ? 'md:[direction:ltr]' : ''}>
-          <SquareImage src={imageSrc} alt={imageAlt} className="border-2 border-primary neo-shadow-black" onClick={() => onImageClick?.(imageSrc)} />
+    {stacked ? (
+      <div className="flex flex-col gap-8">
+        <div>
+          <SectionLabel>{label}</SectionLabel>
+          <RichText text={text} />
         </div>
-      )}
-    </div>
+        {imageSrc && (
+          <div className="w-full">
+            <SquareImage src={imageSrc} alt={imageAlt} className="border-2 border-primary neo-shadow-black" onClick={() => onImageClick?.(imageSrc)} contained />
+          </div>
+        )}
+      </div>
+    ) : (
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-start ${reverse ? 'md:[direction:rtl]' : ''}`}>
+        <div className={reverse ? 'md:[direction:ltr]' : ''}>
+          <SectionLabel>{label}</SectionLabel>
+          <RichText text={text} />
+        </div>
+        {imageSrc && (
+          <div className={reverse ? 'md:[direction:ltr]' : ''}>
+            <SquareImage src={imageSrc} alt={imageAlt} className="border-2 border-primary neo-shadow-black" onClick={() => onImageClick?.(imageSrc)} />
+          </div>
+        )}
+      </div>
+    )}
   </FadeIn>
 );
 
@@ -271,9 +298,9 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               <div>
                 <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">Role</p>
                 {Array.isArray(detailedData.role) ? (
-                  <ul className="space-y-0.5">
+                  <ul className="space-y-2">
                     {detailedData.role.map((r, idx) => (
-                      <li key={idx} className="text-xs font-medium">{r}</li>
+                      <li key={idx} className="text-xs font-medium leading-tight">{r}</li>
                     ))}
                   </ul>
                 ) : (
@@ -327,10 +354,11 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
           <TextWithImage
             label="Overview"
             text={detailedData?.description || project.description}
-            imageSrc={img(0)}
+            imageSrc={project.stackedOverview ? undefined : img(0)}
             imageAlt={project.title}
             accentColor={getAccentColor(project.highlightColor)}
             onImageClick={openLightbox}
+            stacked={project.stackedOverview}
           />
         )}
 
@@ -363,21 +391,39 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         {/* Challenges */}
         {detailedData?.challenges && detailedData.challenges.length > 0 && (
           <FadeIn className="my-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-              {img(3) && (
-                <SquareImage src={img(3)!} alt={`${project.title} challenge`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(3)!)} />
-              )}
-              <div>
-                <SectionLabel>Key Challenges</SectionLabel>
-                <div className="space-y-3">
-                  {detailedData.challenges.map((challenge, idx) => (
-                    <div key={idx} className={`p-4 border-l-4 ${getAccentBorder(project.highlightColor)} bg-card border border-primary/20`}>
-                      <p className="text-sm leading-relaxed">{challenge}</p>
-                    </div>
-                  ))}
+            {project.stackedOverview ? (
+              <div className="flex flex-col gap-8">
+                <div>
+                  <SectionLabel>Key Challenges</SectionLabel>
+                  <div className="grid grid-cols-2 gap-4">
+                    {detailedData.challenges.map((challenge, idx) => (
+                      <div key={idx} className={`p-4 border-l-4 ${getAccentBorder(project.highlightColor)} bg-card border border-primary/20`}>
+                        <p className="text-sm leading-relaxed">{challenge}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {img(0) && (
+                  <SquareImage src={img(0)!} alt={`${project.title}`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(0)!)} contained />
+                )}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                {img(3) && (
+                  <SquareImage src={img(3)!} alt={`${project.title} challenge`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(3)!)} padded />
+                )}
+                <div>
+                  <SectionLabel>Key Challenges</SectionLabel>
+                  <div className="space-y-3">
+                    {detailedData.challenges.map((challenge, idx) => (
+                      <div key={idx} className={`p-4 border-l-4 ${getAccentBorder(project.highlightColor)} bg-card border border-primary/20`}>
+                        <p className="text-sm leading-relaxed">{challenge}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </FadeIn>
         )}
 
@@ -397,11 +443,12 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
           <TextWithImage
             label="The Process"
             text={detailedData.process}
-            imageSrc={img(7)}
+            imageSrc={project.stackedOverview ? undefined : img(7)}
             imageAlt={`${project.title} process`}
             accentColor={getAccentColor(project.highlightColor)}
             reverse
             onImageClick={openLightbox}
+            stacked={project.stackedOverview}
           />
         )}
 
