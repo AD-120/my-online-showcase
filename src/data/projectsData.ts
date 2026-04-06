@@ -20,10 +20,7 @@ export const PROJECTS_DETAILED: ProjectDetailedData[] = [
     title: 'Accountant General (GPA) – Platform Redesign',
     client: 'Government Procurement Administration',
     role: [
-      'UX Lead – Responsible for research, IA, UX strategy, wireframes, prototypes, usability validation, and guiding the UI and development teams',
-      'Responsible for research and user flows',
-      'Information architecture redesign',
-      'UX concept for homepage, AI agent, tenders, and personal area'
+      'UX Lead – Responsible for research, IA, UX strategy, wireframes, prototypes, usability validation, and guiding the UI and development teams'
     ],
     description: 'The Government Procurement Administration (GPA) manages Israel\'s public-sector procurement processes and digital systems. Information was scattered across multiple outdated platforms, making it difficult for suppliers and government employees to find tenders, understand procedures, or complete procurement tasks.\n\nThe goal: create one modern, intuitive, centralized hub for all procurement information and tools.',
     challenges: [
