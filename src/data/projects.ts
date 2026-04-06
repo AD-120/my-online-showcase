@@ -241,6 +241,8 @@ export const PROJECTS: Project[] = [
     description: 'An interactive experience allowing visitors to reenact the 80s classic "Cocktails and Dreams", turning it into a visual karaoke.',
     thumbnail: '/projects/cocktail_1.png',
     fullWidthOverview: true,
+    naturalGallery: true,
+    naturalGalleryOptions: [null, null, { height: '321px', objectPosition: '50% 35%' }],
     categories: ['Digital Art', 'UX/UI', 'LXD'],
     highlightColor: 'pink',
     tags: ['80s', 'Video', 'Experience'],

@@ -17,6 +17,8 @@ export interface Project {
   thumbnail: string;
   thumbnailFocus?: string;
   uniformGallery?: boolean;
+  naturalGallery?: boolean;
+  naturalGalleryOptions?: ({ height?: string; objectPosition?: string } | null)[];
   stackedOverview?: boolean;
   fullWidthOverview?: boolean;
   categories: Category[];

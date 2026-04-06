@@ -361,9 +361,54 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               onImageClick={openLightbox}
               stacked={project.stackedOverview || project.fullWidthOverview}
             />
-            {project.fullWidthOverview && img(0) && (
+            {project.fullWidthOverview && !project.naturalGallery && img(0) && (
               <FadeIn className="-mt-8 mb-16">
                 <SquareImage src={img(0)!} alt={project.title} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(0)!)} objectPosition="top" />
+              </FadeIn>
+            )}
+            {project.naturalGallery && galleryImages.length > 0 && (
+              <FadeIn className="-mt-8 mb-16">
+                <div className="flex flex-col gap-6">
+                  {galleryImages.map((src, i) => {
+                    const opts = project.naturalGalleryOptions?.[i];
+                    if (opts?.height) {
+                      return (
+                        <motion.div
+                          key={i}
+                          className="w-full overflow-hidden border-2 border-primary neo-shadow-black cursor-pointer"
+                          style={{ height: opts.height }}
+                          onClick={() => openLightbox(src)}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: '-30px' }}
+                          transition={{ duration: 0.6, ease: 'easeOut' }}
+                        >
+                          <img
+                            src={src}
+                            alt={`${project.title} ${i + 1}`}
+                            className="w-full h-full object-cover"
+                            style={{ objectPosition: opts.objectPosition ?? 'center' }}
+                            loading="lazy"
+                          />
+                        </motion.div>
+                      );
+                    }
+                    return (
+                      <motion.img
+                        key={i}
+                        src={src}
+                        alt={`${project.title} ${i + 1}`}
+                        className="w-full h-auto border-2 border-primary neo-shadow-black cursor-pointer"
+                        onClick={() => openLightbox(src)}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-30px' }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
+                        loading="lazy"
+                      />
+                    );
+                  })}
+                </div>
               </FadeIn>
             )}
           </>
@@ -385,7 +430,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         )}
 
         {/* Image row — 2 squares */}
-        {!project.uniformGallery && galleryImages.length > 2 && (
+        {!project.uniformGallery && !project.naturalGallery && galleryImages.length > 2 && (
           <FadeIn className="my-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[img(1), img(2)].filter(Boolean).map((src, i) => (
