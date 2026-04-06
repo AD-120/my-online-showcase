@@ -483,6 +483,11 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                 </motion.div>
               ))}
             </div>
+            {project.stackedOverview && (
+              <div className="flex justify-center mt-8">
+                <img src="/projects/steps_coin.png" alt="Steps Coin" className="w-48 h-auto" />
+              </div>
+            )}
           </FadeIn>
         )}
 
