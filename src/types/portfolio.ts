@@ -18,6 +18,7 @@ export interface Project {
   thumbnailFocus?: string;
   uniformGallery?: boolean;
   stackedOverview?: boolean;
+  fullWidthOverview?: boolean;
   categories: Category[];
   highlightColor: HighlightColor;
   tags: string[];

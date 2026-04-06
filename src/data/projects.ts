@@ -10,6 +10,7 @@ export const PROJECTS: Project[] = [
     client: 'Accountant General (GPA)',
     description: 'A unified information architecture connecting tenders, systems, procurement processes, and publications into a single, scalable framework.',
     thumbnail: '/projects/rechesh_16.png',
+    fullWidthOverview: true,
     categories: ['UX/UI'],
     highlightColor: 'pink',
     tags: ['UX', 'GovTech', 'IA'],
@@ -18,21 +19,14 @@ export const PROJECTS: Project[] = [
       process: 'Process details to be added.',
       results: 'Results details to be added.',
       galleryImages: [
-        '/projects/rechesh_1.png',
-        '/projects/rechesh_2.png',
+        '/projects/rechesh_12.png',
         '/projects/rechesh_3.png',
         '/projects/rechesh_4.png',
         '/projects/rechesh_5.png',
-        '/projects/rechesh_6.png',
         '/projects/rechesh_7.png',
         '/projects/rechesh_8.png',
-        '/projects/rechesh_9.png',
         '/projects/rechesh_10.png',
-        '/projects/rechesh_11.png',
-        '/projects/rechesh_12.png',
-        '/projects/rechesh_13.png',
-        '/projects/rechesh_14.png',
-        '/projects/rechesh_15.png'
+        '/projects/rechesh_11.png'
       ]
     }
   },

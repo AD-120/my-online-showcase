@@ -351,15 +351,22 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             </FadeIn>
           </>
         ) : (
-          <TextWithImage
-            label="Overview"
-            text={detailedData?.description || project.description}
-            imageSrc={project.stackedOverview ? undefined : img(0)}
-            imageAlt={project.title}
-            accentColor={getAccentColor(project.highlightColor)}
-            onImageClick={openLightbox}
-            stacked={project.stackedOverview}
-          />
+          <>
+            <TextWithImage
+              label="Overview"
+              text={detailedData?.description || project.description}
+              imageSrc={project.stackedOverview ? undefined : (project.fullWidthOverview ? undefined : img(0))}
+              imageAlt={project.title}
+              accentColor={getAccentColor(project.highlightColor)}
+              onImageClick={openLightbox}
+              stacked={project.stackedOverview || project.fullWidthOverview}
+            />
+            {project.fullWidthOverview && img(0) && (
+              <FadeIn className="-mt-8 mb-16">
+                <SquareImage src={img(0)!} alt={project.title} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(0)!)} />
+              </FadeIn>
+            )}
+          </>
         )}
 
         {/* External Link */}
@@ -391,7 +398,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         {/* Challenges */}
         {detailedData?.challenges && detailedData.challenges.length > 0 && (
           <FadeIn className="my-16">
-            {project.stackedOverview ? (
+            {(project.stackedOverview || project.fullWidthOverview) ? (
               <div className="flex flex-col gap-8">
                 <div>
                   <SectionLabel>Key Challenges</SectionLabel>
@@ -403,7 +410,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                     ))}
                   </div>
                 </div>
-                {img(0) && (
+                {project.stackedOverview && img(0) && (
                   <SquareImage src={img(0)!} alt={`${project.title}`} className="border-2 border-primary neo-shadow-black" onClick={() => openLightbox(img(0)!)} contained />
                 )}
               </div>
@@ -443,12 +450,12 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
           <TextWithImage
             label="The Process"
             text={detailedData.process}
-            imageSrc={project.stackedOverview ? undefined : img(7)}
+            imageSrc={(project.stackedOverview || project.fullWidthOverview) ? undefined : img(7)}
             imageAlt={`${project.title} process`}
             accentColor={getAccentColor(project.highlightColor)}
             reverse
             onImageClick={openLightbox}
-            stacked={project.stackedOverview}
+            stacked={project.stackedOverview || project.fullWidthOverview}
           />
         )}
 
@@ -475,7 +482,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  className="p-6 bg-card border-2 border-primary neo-shadow-black"
+                  className={`p-6 bg-card border-2 border-primary neo-shadow-black${idx === detailedData.deliverables.length - 1 && detailedData.deliverables.length % 2 !== 0 ? ' md:col-span-2 md:w-1/2 md:mx-auto' : ''}`}
                 >
                   <span className={`inline-block w-6 h-0.5 ${getAccentColor(project.highlightColor)} mb-3`} />
                   <h4 className="text-base font-serif font-bold italic mb-2">{deliverable.title}</h4>
